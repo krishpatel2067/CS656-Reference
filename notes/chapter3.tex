@@ -1,0 +1,16 @@
+% NL/R
+% d_nodal
+% La/R
+% min{R1, R2, ...}
+% D_cs
+% D_P2P
+% utilization rate (U_sender), etc.
+% EstimatedRTT = (1 – α) # EstimatedRTT + α # SampleRTT
+% DevRTT = (1 – β) # DevRTT + β # | SampleRTT – EstimatedRTT |
+% TimeoutInterval = EstimatedRTT + 4 # DevRTT
+% LastByteRcvd – LastByteRead <= RcvBuffer
+% rwnd = RcvBuffer – [LastByteRcvd – LastByteRead]
+% LastByteSent – LastByteAcked <= rwnd
+% LastByteSent – LastByteAcked <= min{cwnd, rwnd}
+% TCP rate approx cwnd / RTT
+% average throughput of a connection = 0.75 * W / RTT

@@ -1,1 +1,31 @@
 \section{Chapter 1}
+
+\begin{itemize}
+    \item \textbf{End-to-end delay (transmission only)}:
+          \begin{equation*}
+              d_\text{end-to-end} = N\frac{L}{R}
+          \end{equation*}
+          where the packet size is $L$ bits and the transmission rate is $R$ bps.
+    \item \textbf{Total nodal delay}:
+          \begin{equation*}
+              d_\text{nodal} = d_\text{proc} + d_\text{queue} + d_\text{trans} + d_\text{prop}
+          \end{equation*}
+          where
+          \begin{itemize}
+              \item $d_\text{proc}$ is the processing delay,
+              \item $d_\text{queue}$ is the queuing delay,
+              \item $d_\text{trans}$ is the transmission delay,
+              \item $d_\text{prop}$ is the propagation delay.
+          \end{itemize}
+    \item \textbf{Traffic intensity}:
+          \begin{equation*}
+              \frac{La}{R}
+          \end{equation*}
+          where
+          \begin{itemize}
+              \item $L$ is the packet size [bits/packet]    ,
+              \item $a$ is the arrival rate [packets/sec],
+              \item $R$ is the transmission rate [bits/sec].
+          \end{itemize}
+          Note: as traffic intensity approaches 1, the queuing delay approaches infinity asymptotically.
+\end{itemize}
