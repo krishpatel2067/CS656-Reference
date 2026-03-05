@@ -1,0 +1,35 @@
+\section{Chapter 2}
+
+\begin{itemize}
+    \item \textbf{File distribution}:
+          \begin{itemize}
+              \item \textbf{Client-server}:
+                    \begin{align*}
+                        D_{cs}       & \geq \max\left\{\frac{NF}{u_s}, \frac{F}{d_\text{min}}\right\} \\
+                        d_\text{min} & = \min\left\{d_1, d_2, \ldots, d_N\right\}
+                    \end{align*}
+                    where
+                    \begin{itemize}
+                        \item $N$ is the number of peers,
+                        \item $F$ is the file size [bits],
+                        \item $u_s$ is the server upload rate [bits/sec],
+                        \item $d_{min}$ is the minimum peer download rate [bits/sec],
+                        \item $d_i$ is the download rate of peer $i$ [bits/sec].
+                    \end{itemize}
+                    This assumes one server is used to distribute the file to multiple clients. Oftentimes, the $\geq$ can be replaced with $=$.
+              \item \textbf{Peer-to-peer}:
+                    \begin{equation*}
+                        D_{P2P} \geq \max\left\{\frac{F}{u_s}, \frac{F}{d_\text{min}}, \frac{NF}{u_s + \sum_{i=1}^{N} u_i}\right\}
+                    \end{equation*}
+                    where
+                    \begin{itemize}
+                        \item $N$ is the number of peers,
+                        \item $F$ is the file size [bits],
+                        \item $u_s$ is the server upload rate [bits/sec],
+                        \item $d_{min}$ is the minimum peer download rate [bits/sec],
+                        \item $u_i$ is the upload rate of peer $i$ [bits/sec].
+                    \end{itemize}
+                    This assumes that the server only needs to send one copy of the file to the peers, who can then redistribute it among themselves. Oftentimes, the $\geq$ can be replaced with $=$.
+          \end{itemize}
+          Note: client-server distribution time scales linearly with $N$, while peer-to-peer distribution time scales much slower with $N$, always remaining under the client-server distribution time.
+\end{itemize}
