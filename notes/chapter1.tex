@@ -23,9 +23,15 @@
           \end{equation*}
           where
           \begin{itemize}
-              \item $L$ is the packet size [bits/packet]    ,
+              \item $L$ is the packet size [bits/packet],
               \item $a$ is the arrival rate [packets/sec],
               \item $R$ is the transmission rate [bits/sec].
           \end{itemize}
           Note: as traffic intensity approaches 1, the queuing delay approaches infinity asymptotically.
+    \item \textbf{End-to-end throughput}:
+          \begin{equation*}
+              \min\left\{R_1, R_2, \ldots, R_N\right\}
+          \end{equation*}
+          where $R_i$ is the transmission rate at node $i$. Assuming that there is only one source and one destination, the end-to-end throughput is dependent on the bottleneck link's transmission rate.
+
 \end{itemize}
