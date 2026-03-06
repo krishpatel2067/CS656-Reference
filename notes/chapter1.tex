@@ -1,15 +1,25 @@
 \section{Chapter 1}
 
 \begin{itemize}
-    \item \textbf{End-to-end delay (transmission only)}:
+    \item \textbf{Transmission delay}:
+          \begin{align*}
+              d_\text{trans}      & = \frac{L}{R}  \\
+              d_\text{end-to-end} & = N\frac{L}{R}
+          \end{align*}
+          where
+          \begin{itemize}
+              \item $L$ is the packet size [bits],
+              \item $N$ is the number of nodes,
+              \item $R$ is the transmission rate [bits/sec].
+          \end{itemize}
+    \item \textbf{Propagation delay}:
           \begin{equation*}
-              d_\text{end-to-end} = N\frac{L}{R}
+              d_\text{prop} = \frac{d}{s}
           \end{equation*}
           where
           \begin{itemize}
-              \item $N$ is the number of nodes,
-              \item $L$ is the packet size [bits],
-              \item $R$ is the transmission rate [bits/sec].
+              \item $d$ is the distance [meters],
+              \item $s$ is the speed of light [meters/sec].
           \end{itemize}
     \item \textbf{Total nodal delay}:
           \begin{equation*}
