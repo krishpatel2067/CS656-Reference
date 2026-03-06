@@ -49,6 +49,15 @@
               \item $\text{DevRTT}$ is the round-trip time deviation [sec].
           \end{itemize}
           The timeout interval determines when to retransmit a packet if no ACK is received. After a timeout event, the timeout interval is doubled, but after successful receipt of an ACK, the timeout interval is again calculated using the formula above.
+    \item \textbf{TCP send rate}:
+          \begin{align*}
+              \frac{\text{cwnd}}{RTT}
+          \end{align*}
+          where
+          \begin{itemize}
+              \item $\text{cwnd}$ is the congestion window [bytes],
+              \item $\text{RTT}$ is the round-trip time [sec].
+          \end{itemize}
     \item \textbf{Receive window (flow control)}:
           \begin{align*}
               \text{rwnd}      & = \text{RcvBuffer} - [\text{LastByteRcvd} - \text{LastByteRead}] \\
@@ -82,5 +91,15 @@
               \item $\text{average throughput of a connection}$ is in [bits/sec],
               \item $\text{W}$ is the maximum congestion window size, which occurs during a loss event [bytes],
               \item $\text{RTT}$ is the round-trip time [sec].
+          \end{itemize}
+    \item \textbf{TCP average rate with loss}:
+          \begin{align*}
+              \approx \frac{1.22 \cdot \text{MSS}}{\text{RTT} \sqrt{L}}
+          \end{align*}
+          where
+          \begin{itemize}
+              \item $\text{MSS}$ is the maximum segment size [bytes],
+              \item $\text{RTT}$ is the round-trip time [sec],
+              \item $L$ is the loss rate.
           \end{itemize}
 \end{itemize}
