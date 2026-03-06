@@ -1,10 +1,21 @@
 \section{Chapter 1}
 
 \begin{itemize}
+    \item \textbf{Traffic intensity}:
+          \begin{equation*}
+              I = \frac{La}{R}
+          \end{equation*}
+          where
+          \begin{itemize}
+              \item $L$ is the packet size [bits/packet],
+              \item $a$ is the arrival rate [packets/sec],
+              \item $R$ is the transmission rate [bits/sec].
+          \end{itemize}
+          Note: as traffic intensity approaches 1, the queuing delay approaches infinity asymptotically.
     \item \textbf{Transmission delay}:
           \begin{align*}
-              d_\text{trans}      & = \frac{L}{R}  \\
-              d_\text{end-to-end} & = N\frac{L}{R}
+              \text{Node-to-node:}\quad & d_\text{trans} = \frac{L}{R}  \\
+              \text{End-to-end:}\quad   & d_\text{trans} = N\frac{L}{R}
           \end{align*}
           where
           \begin{itemize}
@@ -21,6 +32,16 @@
               \item $d$ is the distance [meters],
               \item $s$ is the speed of light [meters/sec].
           \end{itemize}
+    \item \textbf{Queuing delay}:
+          \begin{equation*}
+              d_\text{queue} = \frac{I\cdot (L/R)}{1 - I}
+          \end{equation*}
+          where
+          \begin{itemize}
+              \item $I$ is the traffic intensity,
+              \item $L$ is the packet size [bits],
+              \item $R$ is the transmission rate [bits/sec].
+          \end{itemize}
     \item \textbf{Total nodal delay}:
           \begin{equation*}
               d_\text{nodal} = d_\text{proc} + d_\text{queue} + d_\text{trans} + d_\text{prop}
@@ -32,17 +53,7 @@
               \item $d_\text{trans}$ is the transmission delay,
               \item $d_\text{prop}$ is the propagation delay.
           \end{itemize}
-    \item \textbf{Traffic intensity}:
-          \begin{equation*}
-              \frac{La}{R}
-          \end{equation*}
-          where
-          \begin{itemize}
-              \item $L$ is the packet size [bits/packet],
-              \item $a$ is the arrival rate [packets/sec],
-              \item $R$ is the transmission rate [bits/sec].
-          \end{itemize}
-          Note: as traffic intensity approaches 1, the queuing delay approaches infinity asymptotically.
+
     \item \textbf{End-to-end throughput}:
           \begin{equation*}
               \min\left\{R_1, R_2, \ldots, R_N\right\}
