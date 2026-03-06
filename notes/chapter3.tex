@@ -1,14 +1,17 @@
 \section{Chapter 3}
 
 \begin{itemize}
-    \item \textbf{Utilization rate (stop-and-wait)}:
-          \begin{equation*}
-              U_\text{sender} = \frac{L/R}{RTT + L/R}
-          \end{equation*}
+    \item \textbf{Utilization rate}:
+          \begin{align*}
+              \text{Stop-and-wait:}\quad & U_\text{sender} = \frac{L/R}{RTT + L/R}  \\
+              \\
+              \text{Pipelined:}\quad     & U_\text{sender} = \frac{NL/R}{RTT + L/R}
+          \end{align*}
           where
           \begin{itemize}
               \item $L$ is the packet size [bits],
               \item $R$ is the transmission rate [bits/sec],
+              \item $N$ is the number of packets sent at once before receiving an ACK,
               \item $RTT$ is the round-trip time [sec].
           \end{itemize}
           Measures the fraction of time the sender is busy sending data.
