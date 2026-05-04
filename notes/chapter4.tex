@@ -1,0 +1,38 @@
+\section{Chapter 4}
+
+\subsection{Buffer Size in Routers}
+
+Traditional wisdom suggests:
+
+\begin{equation*}
+    B = RTT \cdot C
+\end{equation*}
+
+However, more recent research suggests:
+
+\begin{equation*}
+    B = \frac{RTT \cdot C}{\sqrt N}
+\end{equation*}
+
+where
+\begin{itemize}
+    \item $RTT$ is the round-trip time [sec],
+    \item $C$ is the link capacity [bits/sec],
+    \item $N$ is the \emph{independent} TCP flows sharing the link.
+\end{itemize}
+
+Based on more recent research, this formula applies when $N$ is large such as in the network core.
+
+\subsection{Weighted Fair Queuing (WFQ)}
+
+In output port packet scheduling, each class $i$ is guaranteed to receive a fraction of the service, given by
+
+\begin{equation*}
+    \frac{w_i}{\sum_{j=1}^N w_j}
+\end{equation*}
+
+where
+\begin{itemize}
+    \item $w_i$ is the weight of class $i$,
+    \item $N$ is the number of classes with at least one packet in the queue.
+\end{itemize}

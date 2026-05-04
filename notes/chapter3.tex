@@ -1,105 +1,103 @@
 \section{Chapter 3}
 
+\subsection{Utilization Rate}
+\begin{align*}
+    \text{Stop-and-wait:}\quad & U_\text{sender} = \frac{L/R}{RTT + L/R}  \\
+    \\
+    \text{Pipelined:}\quad     & U_\text{sender} = \frac{NL/R}{RTT + L/R}
+\end{align*}
+where
 \begin{itemize}
-    \item \textbf{Utilization rate}:
-          \begin{align*}
-              \text{Stop-and-wait:}\quad & U_\text{sender} = \frac{L/R}{RTT + L/R}  \\
-              \\
-              \text{Pipelined:}\quad     & U_\text{sender} = \frac{NL/R}{RTT + L/R}
-          \end{align*}
-          where
-          \begin{itemize}
-              \item $L$ is the packet size [bits],
-              \item $R$ is the transmission rate [bits/sec],
-              \item $N$ is the number of packets sent at once before receiving an ACK,
-              \item $RTT$ is the round-trip time [sec].
-          \end{itemize}
-          Measures the fraction of time the sender is busy sending data.
-    \item \textbf{Estimated RTT}:
-          \begin{equation*}
-              \text{EstimatedRTT} = (1 - \alpha) \cdot \text{EstimatedRTT} + \alpha \cdot \text{SampleRTT}
-          \end{equation*}
-          where
-          \begin{itemize}
-              \item $\alpha$ is the smoothing factor (recommended $\alpha = 0.125$),
-              \item $\text{EstimatedRTT}$ is the estimated round-trip time [sec],
-              \item $\text{SampleRTT}$ is the sample round-trip time [sec].
-          \end{itemize}
-          This uses an exponential weighted moving average (EWMA), in which the weight of a particular \textbf{SampleRTT} decreases exponentially fast with more updates.
-    \item \textbf{RTT deviation}:
-          \begin{equation*}
-              \text{DevRTT} = (1 - \beta) \cdot \text{DevRTT} + \beta \cdot |\text{SampleRTT} - \text{EstimatedRTT}|
-          \end{equation*}
-          where
-          \begin{itemize}
-              \item $\beta$ is the smoothing factor (recommended $\beta = 0.25$),
-              \item $\text{DevRTT}$ is the round-trip time deviation [sec],
-              \item $\text{SampleRTT}$ is the sample round-trip time [sec],
-              \item $\text{EstimatedRTT}$ is the estimated round-trip time [sec].
-          \end{itemize}
-          This uses an EWMA on the absolute difference between the \textbf{SampleRTT} and \textbf{EstimatedRTT}.
-    \item \textbf{Timeout interval}:
-          \begin{equation*}
-              \text{TimeoutInterval} = \text{EstimatedRTT} + 4 \cdot \text{DevRTT}
-          \end{equation*}
-          where
-          \begin{itemize}
-              \item $\text{TimeoutInterval}$ is in [sec] (initially 1 second),
-              \item $\text{EstimatedRTT}$ is the estimated round-trip time [sec],
-              \item $\text{DevRTT}$ is the round-trip time deviation [sec].
-          \end{itemize}
-          The timeout interval determines when to retransmit a packet if no ACK is received. After a timeout event, the timeout interval is doubled, but after successful receipt of an ACK, the timeout interval is again calculated using the formula above.
-    \item \textbf{TCP send rate}:
-          \begin{align*}
-              \frac{\text{cwnd}}{RTT}
-          \end{align*}
-          where
-          \begin{itemize}
-              \item $\text{cwnd}$ is the congestion window [bytes],
-              \item $\text{RTT}$ is the round-trip time [sec].
-          \end{itemize}
-    \item \textbf{Receive window (flow control)}:
-          \begin{align*}
-              \text{rwnd}      & = \text{RcvBuffer} - [\text{LastByteRcvd} - \text{LastByteRead}] \\
-              \text{RcvBuffer} & \geq \text{LastByteRcvd} - \text{LastByteRead}
-          \end{align*}
-          where
-          \begin{itemize}
-              \item $\text{rwnd}$ is the receive window [bytes],
-              \item $\text{RcvBuffer}$ is the receive buffer [bytes],
-              \item $\text{LastByteRcvd}$ is the last byte in the receive buffer from the network layer [bytes],
-              \item $\text{LastByteRead}$ is the last byte read from the receive buffer by the application layer [bytes].
-          \end{itemize}
-          Informally, a measure of the spare room in the receive buffer.
-    \item \textbf{TCP unacknowledged data limit}:
-          \begin{equation*}
-              \text{LastByteSent} - \text{LastByteAcked} \leq \min\{\text{cwnd}, \text{rwnd}\}
-          \end{equation*}
-          where
-          \begin{itemize}
-              \item $\text{LastByteSent}$ is in [bytes],
-              \item $\text{LastByteAcked}$ is in [bytes],
-              \item $\text{cwnd}$ is the congestion window [bytes],
-              \item $\text{rwnd}$ is the receive window [bytes].
-          \end{itemize}
-    \item \textbf{TCP Reno average throughput (macroscopic model)}:
-          \begin{equation*}
-              \text{average throughput of a connection} = \frac{0.75 \cdot \text{W}}{\text{RTT}}
-          \end{equation*}
-          where
-          \begin{itemize}
-              \item $\text{average throughput of a connection}$ is in [bits/sec],
-              \item $\text{W}$ is the maximum congestion window size, which occurs during a loss event [bytes],
-              \item $\text{RTT}$ is the round-trip time [sec].
-          \end{itemize}
-    \item \textbf{TCP average rate with loss}:
-          \begin{align*}
-              \approx \frac{1.22 \cdot \text{MSS}}{\text{RTT} \sqrt{L}}
-          \end{align*}
-          where
-          \begin{itemize}
-              \item $\text{MSS}$ is the maximum segment size [bytes],
-              \item $\text{RTT}$ is the round-trip time [sec],
-              \item $L$ is the loss rate.
-          \end{itemize}
+    \item $L$ is the packet size [bits],
+    \item $R$ is the transmission rate [bits/sec],
+    \item $N$ is the number of packets sent at once before receiving an ACK,
+    \item $RTT$ is the round-trip time [sec].
+\end{itemize}
+Measures the fraction of time the sender is busy sending data.
+\subsection{Estimated RTT}
+\begin{equation*}
+    \text{EstimatedRTT} = (1 - \alpha) \cdot \text{EstimatedRTT} + \alpha \cdot \text{SampleRTT}
+\end{equation*}
+where
+\begin{itemize}
+    \item $\alpha$ is the smoothing factor (recommended $\alpha = 0.125$),
+    \item $\text{EstimatedRTT}$ is the estimated round-trip time [sec],
+    \item $\text{SampleRTT}$ is the sample round-trip time [sec].
+\end{itemize}
+This uses an exponential weighted moving average (EWMA), in which the weight of a particular \textbf{SampleRTT} decreases exponentially fast with more updates.
+\subsection{RTT Deviation}
+\begin{equation*}
+    \text{DevRTT} = (1 - \beta) \cdot \text{DevRTT} + \beta \cdot |\text{SampleRTT} - \text{EstimatedRTT}|
+\end{equation*}
+where
+\begin{itemize}
+    \item $\beta$ is the smoothing factor (recommended $\beta = 0.25$),
+    \item $\text{DevRTT}$ is the round-trip time deviation [sec],
+    \item $\text{SampleRTT}$ is the sample round-trip time [sec],
+    \item $\text{EstimatedRTT}$ is the estimated round-trip time [sec].
+\end{itemize}
+This uses an EWMA on the absolute difference between the \textbf{SampleRTT} and \textbf{EstimatedRTT}.
+\subsection{Timeout Interval}
+\begin{equation*}
+    \text{TimeoutInterval} = \text{EstimatedRTT} + 4 \cdot \text{DevRTT}
+\end{equation*}
+where
+\begin{itemize}
+    \item $\text{TimeoutInterval}$ is in [sec] (initially 1 second),
+    \item $\text{EstimatedRTT}$ is the estimated round-trip time [sec],
+    \item $\text{DevRTT}$ is the round-trip time deviation [sec].
+\end{itemize}
+The timeout interval determines when to retransmit a packet if no ACK is received. After a timeout event, the timeout interval is doubled, but after successful receipt of an ACK, the timeout interval is again calculated using the formula above.
+\subsection{TCP Send Rate}
+\begin{align*}
+    \frac{\text{cwnd}}{RTT}
+\end{align*}
+where
+\begin{itemize}
+    \item $\text{cwnd}$ is the congestion window [bytes],
+    \item $\text{RTT}$ is the round-trip time [sec].
+\end{itemize}
+\subsection{Receive Window (Flow Control)}
+\begin{align*}
+    \text{rwnd}      & = \text{RcvBuffer} - [\text{LastByteRcvd} - \text{LastByteRead}] \\
+    \text{RcvBuffer} & \geq \text{LastByteRcvd} - \text{LastByteRead}
+\end{align*}
+where
+\begin{itemize}
+    \item $\text{rwnd}$ is the receive window [bytes],
+    \item $\text{RcvBuffer}$ is the receive buffer [bytes],
+    \item $\text{LastByteRcvd}$ is the last byte in the receive buffer from the network layer [bytes],
+    \item $\text{LastByteRead}$ is the last byte read from the receive buffer by the application layer [bytes].
+\end{itemize}
+Informally, a measure of the spare room in the receive buffer.
+\subsection{TCP Unacknowledged Data Limit}
+\begin{equation*}
+    \text{LastByteSent} - \text{LastByteAcked} \leq \min\{\text{cwnd}, \text{rwnd}\}
+\end{equation*}
+where
+\begin{itemize}
+    \item $\text{LastByteSent}$ is in [bytes],
+    \item $\text{LastByteAcked}$ is in [bytes],
+    \item $\text{cwnd}$ is the congestion window [bytes],
+    \item $\text{rwnd}$ is the receive window [bytes].
+\end{itemize}
+\subsection{TCP Reno Average Throughput (Macroscopic Model)}
+\begin{equation*}
+    \text{average throughput of a connection} = \frac{0.75 \cdot \text{W}}{\text{RTT}}
+\end{equation*}
+where
+\begin{itemize}
+    \item $\text{average throughput of a connection}$ is in [bits/sec],
+    \item $\text{W}$ is the maximum congestion window size, which occurs during a loss event [bytes],
+    \item $\text{RTT}$ is the round-trip time [sec].
+\end{itemize}
+\subsection{TCP Average Rate with Loss}
+\begin{align*}
+    \approx \frac{1.22 \cdot \text{MSS}}{\text{RTT} \sqrt{L}}
+\end{align*}
+where
+\begin{itemize}
+    \item $\text{MSS}$ is the maximum segment size [bytes],
+    \item $\text{RTT}$ is the round-trip time [sec],
+    \item $L$ is the loss rate.
 \end{itemize}
