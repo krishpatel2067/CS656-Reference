@@ -1,3 +1,46 @@
-% pg 418: Dijkstra's algorithm
-% pg 420: Bellman-Ford equation
-% pg 426: LS msg length complexity
+\section{Chapter 5}
+
+\subsection{Link-State Algorithm Time Complexity}
+
+Without a heap to choose the next node with the least cost, the time complexity is
+
+\begin{equation*}
+    O(n^2)
+\end{equation*}
+
+where $n$ is the number of nodes.
+
+\subsection {Bellman-Ford Algorithm}
+
+\begin{equation*}
+    d_x(y) = \text{min}_v \{c(x,v) + d_v(y)\}
+\end{equation*}
+\begin{equation*}
+    D_x(y) = \text{min}_v \{c(x,v) + D_v(y)\}
+\end{equation*}
+
+where
+\begin{itemize}
+    \item $c(x,v)$ is the cost of the edge from node $x$ to node $v$,
+    \item $d_x(y)$ is the shortest path from node $x$ to node $y$,
+    \item $D_x(y)$ is the estimation of the least cost from node $x$ to node $y$,
+    \item $d_v(y)$ is the shortest path from node $v$ to node $y$,
+    \item $D_v(y)$ is the estimation of the least cost from node $v$ to node $y$,
+    \item $v$ is the set of neighbors of node $x$.
+\end{itemize}
+
+Eventually each $D_x(y)$ will converge to $d_x(y)$.
+
+\subsection{Link-State Message Complexity}
+
+The number of messages that need to be sent is
+
+\begin{equation*}
+    O(|N| |E|)\text{,}
+\end{equation*}
+
+where
+\begin{itemize}
+    \item $|N|$ is the number of nodes (routers),
+    \item $|E|$ is the number of edges (links).
+\end{itemize}
