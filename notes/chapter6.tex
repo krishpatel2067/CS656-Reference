@@ -1,4 +1,52 @@
-% CRC algorithm calc
-% pg 499-500: slotted ALOHA efficiency
-% pg 500: pure ALOHA efficiency
-% pg 506: CSMA/CD efficiency
+\section{Chapter 6}
+
+\subsection{Cyclic Redundancy Check (CRC)}
+
+\begin{equation*}
+    R = \text{remainder}\left(\frac{D \cdot 2^r}{G}\right)
+\end{equation*}
+
+where
+\begin{itemize}
+    \item $R$ is the remainder bits (length $r$),
+    \item $D$ is the data bits (length $d$),
+    \item $r$ is the number of remainder bits,
+    \item $G$ is the generator of length $r+1$.
+\end{itemize}
+
+The resulting bit string is $D$ followed by $R$ of total length $d+r$. Note:
+\begin{itemize}
+    \item Can detect all burst errors of length $r$ or less
+    \item Can detect any odd number of errors
+    \item Can detect burst errors of length $r+1$ with probability $1 - 0.5^r$
+\end{itemize}
+
+\subsection{Slotted ALOHA Efficiency}
+
+When there are a large number of nodes with many frames to trasmit, the maximum efficiency is:
+
+\begin{equation*}
+    \frac{1}{e} = 0.37
+\end{equation*}
+
+\subsection{ALOHA Efficiency}
+
+When there are a small number of nodes with few frames to trasmit, the maximum efficiency is:
+
+\begin{equation*}
+    \frac{1}{2e} = 0.18
+\end{equation*}
+
+\subsection{CSMA/CD Efficiency}
+
+When there are a large number of nodes with many frames to trasmit, the maximum efficiency is:
+
+\begin{equation*}
+    \frac{1}{1 + 5d_\text{prop}/d_\text{trans}}
+\end{equation*}
+
+where
+\begin{itemize}
+    \item $d_\text{prop}$ is the maximum amount of time for a signal to propagate between any two adapters,
+    \item $d_\text{trans}$ is the time to transmit a maximum-size frame.
+\end{itemize}
