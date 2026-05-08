@@ -1,5 +1,40 @@
 % CDMA encoding/decoding pg. 571-572
-% 5G capacity pg. 608
+\section{Chapter 7}
+
+\subsection{CDMA Encoding/Decoding}
+
+\subsubsection{Single Sender}
+
+\begin{align*}
+    Z_{i, m} & = d_i \cdot c_m \tag{Encoding}                                   \\
+    d_i      & = \frac{1}{M} \sum_{m=1}^{M} Z_{i, m} \cdot c_{m} \tag{Decoding}
+\end{align*}
+
+where
+\begin{itemize}
+    \item $d_i$ is the $i$-th bit in the original signal,
+    \item $Z_{i, m}$ is the encoded bit in the $m$-th mini-slot of $d_i$,
+    \item $c_{m}$ is the $m$-th bit of the assigned CDMA code,
+    \item $M$ is the length of the code,
+    \item $m = 1, 2, \dots, M$.
+\end{itemize}
+
+\subsubsection{Multiple Senders}
+
+\begin{align*}
+    Z^*_{i, m} & = \sum_{s=1}^{N} Z^s_{i, m} \tag{Encoding}                       \\
+    d_i        & = \frac{1}{M} \sum_{m=1}^{M} Z^*_{i, m} \cdot c_m \tag{Decoding}
+\end{align*}
+
+where
+\begin{itemize}
+    \item $d_i$ is the $i$-th bit in the original signal,
+    \item $Z^*_{i, m}$ is the encoded bit in the $m$-th mini-slot of $d_i$ at the receiver,
+    \item $Z^s_{i, m}$ is the encoded bit in the $m$-th mini-slot of $d_i$ sent by sender $s$ (computed exactly as in the single-sender case),
+    \item $c_m$ is the $m$-th bit of the assigned CDMA code,
+    \item $N$ is the number of senders,
+    \item $M$ is the length of the code.
+\end{itemize}
 
 \subsection {5G Capacity}
 
