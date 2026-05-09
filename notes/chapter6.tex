@@ -23,19 +23,17 @@ The resulting bit string is $D$ followed by $R$ of total length $d+r$. Note:
 
 \subsection{Slotted ALOHA Efficiency}
 
-When there are a large number of nodes with many frames to trasmit, the maximum efficiency is:
-
-\begin{equation*}
-    \frac{1}{e} = 0.37
-\end{equation*}
+\begin{align*}
+    \text{efficiency} & = Np(1-p)^{N-1}                               \\
+                      & = \frac{1}{e} = 0.37 \tag{maximum efficiency}
+\end{align*}
 
 \subsection{ALOHA Efficiency}
 
-When there are a small number of nodes with few frames to trasmit, the maximum efficiency is:
-
-\begin{equation*}
-    \frac{1}{2e} = 0.18
-\end{equation*}
+\begin{align*}
+    \text{efficiency} & = Np(1-p)^{2(N-1)}                             \\
+                      & = \frac{1}{2e} = 0.18 \tag{maximum efficiency}
+\end{align*}
 
 \subsection{CSMA/CD Efficiency}
 
