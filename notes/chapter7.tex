@@ -6,8 +6,8 @@
 \subsubsection{Single Sender}
 
 \begin{align*}
-    Z_{i, m} & = d_i \cdot c_m \tag{Encoding}                                   \\
-    d_i      & = \frac{1}{M} \sum_{m=1}^{M} Z_{i, m} \cdot c_{m} \tag{Decoding}
+    Z_{i, m} & = d_i \cdot c_m \tag{encoding}                                   \\
+    d_i      & = \frac{1}{M} \sum_{m=1}^{M} Z_{i, m} \cdot c_{m} \tag{decoding}
 \end{align*}
 
 where
@@ -22,8 +22,8 @@ where
 \subsubsection{Multiple Senders}
 
 \begin{align*}
-    Z^*_{i, m} & = \sum_{s=1}^{N} Z^s_{i, m} \tag{Encoding}                       \\
-    d_i        & = \frac{1}{M} \sum_{m=1}^{M} Z^*_{i, m} \cdot c_m \tag{Decoding}
+    Z^*_{i, m} & = \sum_{s=1}^{N} Z^s_{i, m} \tag{encoding}                       \\
+    d_i        & = \frac{1}{M} \sum_{m=1}^{M} Z^*_{i, m} \cdot c_m \tag{decoding}
 \end{align*}
 
 where
